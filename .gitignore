@@ -1,0 +1,9 @@
+node_modules/
+.gitignore/
+.elasticbeanstalk/
+deploy/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
