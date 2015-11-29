@@ -25,35 +25,33 @@ app.configure(function(){
 
 app.configure('development', function() {
   console.log('Using development settings.');
-  // app.set('connection', mysql.createConnection({
-  //   host: '',
-  //   user: '',
-  //   port: '',
-  //   password: ''}));
+  var knex = require('knex')({
+    client: 'pg',
+    connection: {
+      host     : 'https://aa1f9k8x0fb8inx.cfys7lzpror4.us-west-2.rds.amazonaws.com',
+      user     : 'Ziggy',
+      password : 'Seamless12'
+    }
+  });
   app.use(express.errorHandler());
 });
-
-console.log( JSON.stringify(process.env) );
 
 app.configure('production', function() {
   console.log('Using production settings.');
 
   var knex = require('knex')({
-  client: 'pg',
-  connection: {
-    host     : process.env.RDS_HOSTNAME,
-    user     : process.env.RDS_USERNAME,
-    password : process.env.RDS_PASSWORD,
-    database : 'aa1f9k8x0fb8inx',
-    charset  : process.env.RDS_PORT
-  }
+    client: 'pg',
+    connection: {
+      host     : process.env.RDS_HOSTNAME,
+      user     : process.env.RDS_USERNAME,
+      password : process.env.RDS_PASSWORD,
+      port     : process.env.RDS_PORT
+      // database : 'aa1f9k8x0fb8inx',
+      // charset  : process.env.RDS_PORT
+    }
+  });
 });
-  // app.set('connection', mysql.createConnection({
-  //   host: process.env.RDS_HOSTNAME,
-  //   user: process.env.RDS_USERNAME,
-  //   password: process.env.RDS_PASSWORD,
-  //   port: process.env.RDS_PORT}));
-});
+
 
 function init() {
   app.get('/', routes.index);
