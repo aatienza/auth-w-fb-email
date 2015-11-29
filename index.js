@@ -33,8 +33,21 @@ app.configure('development', function() {
   app.use(express.errorHandler());
 });
 
+console.log( JSON.stringify(process.env) );
+
 app.configure('production', function() {
   console.log('Using production settings.');
+
+  var knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host     : process.env.RDS_HOSTNAME,
+    user     : process.env.RDS_USERNAME,
+    password : process.env.RDS_PASSWORD,
+    database : 'aa1f9k8x0fb8inx',
+    charset  : process.env.RDS_PORT
+  }
+});
   // app.set('connection', mysql.createConnection({
   //   host: process.env.RDS_HOSTNAME,
   //   user: process.env.RDS_USERNAME,
