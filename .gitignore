@@ -1,7 +1,7 @@
 node_modules/
 .gitignore/
 .elasticbeanstalk/
-deploy/
+build/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
